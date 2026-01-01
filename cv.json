@@ -39,6 +39,13 @@
         "url": "https://www.linkedin.com/in/agung-ahmad-alfin/"
       },
       {
+        "network": "WhatsApp",
+        "icon": "mdi:whatsapp",
+        "color": "#25D366",
+        "username": "0882007556334",
+        "url": "https://wa.me/6282007556334"
+      },
+      {
         "network": "Email",
         "icon": "ri:mail-fill",
         "color": "#D44638",
