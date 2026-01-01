@@ -11,9 +11,9 @@ const millisecondsInYear = 1000 * 60 * 60 * 24 * 365
     {work.map(({ name, startDate, endDate, position, summary, responsibilities,  url, skills, location, location_type }) => {
       // Handle bilingual fields - get language from cookie or default to Indonesian
       const lang = Astro.cookies.get('language')?.value || 'id';
-      const positionText = typeof position === 'object' ? position[lang] : position;
-      const summaryText = typeof summary === 'object' ? summary[lang] : summary;
-      const responsibilitiesArray = typeof responsibilities === 'object' ? responsibilities[lang] : responsibilities;
+      const positionText = typeof position === 'object' ? (position as any)[lang] : position;
+      const summaryText = typeof summary === 'object' ? (summary as any)[lang] : summary;
+      const responsibilitiesArray = typeof responsibilities === 'object' ? (responsibilities as any)[lang] : responsibilities;
       const startYear = new Date(startDate).getFullYear()
       const endYear = endDate != null ? new Date(endDate).getFullYear() : "Present"
       const timeLapse = (endDate!=null?new Date(endDate).getTime():new Date().getTime()) - new Date(startDate).getTime()
@@ -74,7 +74,7 @@ const millisecondsInYear = 1000 * 60 * 60 * 24 * 365
                   <div class="flex flex-col gap-1">
                     <h4 class="print:font-bold print:pt-1" data-ccursor="lift">Responsibilities:</h4>
                     <ul class="text-skin-muted [&>li]:ml-4 flex list-disc flex-col gap-2">
-                      {responsibilitiesArray.map(responsibility => (
+                      {responsibilitiesArray.map((responsibility: string) => (
                         <li data-ccursor>{responsibility}</li>
                       ))}
                     </ul>
