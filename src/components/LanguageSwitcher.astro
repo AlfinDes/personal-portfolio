@@ -1,0 +1,49 @@
+---
+---
+
+<button
+  id="language-toggle"
+  class="fixed top-4 right-20 z-50 flex items-center gap-2 rounded-lg bg-skin-fill-secondary px-4 py-2 text-sm font-medium text-skin-base shadow-lg transition-all hover:scale-105 hover:shadow-xl print:hidden"
+  aria-label="Toggle language"
+>
+  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+    ></path>
+  </svg>
+  <span id="lang-text">ID</span>
+</button>
+
+<script>
+  import { getCurrentLanguage, setLanguage, type Language } from '../i18n';
+
+  const button = document.getElementById('language-toggle');
+  const langText = document.getElementById('lang-text');
+
+  // Initialize language
+  let currentLang = getCurrentLanguage();
+  if (langText) {
+    langText.textContent = currentLang.toUpperCase();
+  }
+
+  // Toggle language
+  button?.addEventListener('click', () => {
+    const newLang: Language = currentLang === 'id' ? 'en' : 'id';
+    
+    // Set in localStorage
+    setLanguage(newLang);
+    
+    // Set in cookie for SSR
+    document.cookie = `language=${newLang}; path=/; max-age=31536000`; // 1 year
+    
+    currentLang = newLang;
+    if (langText) {
+      langText.textContent = newLang.toUpperCase();
+    }
+    // Reload page to apply new language
+    window.location.reload();
+  });
+</script>

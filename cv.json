@@ -1,0 +1,158 @@
+{
+  "analyticsCode": "",
+  "basics": {
+    "name": "Agung Ahmad Alfin",
+    "label": {
+      "id": "Web Developer (Sedang Eksplor)",
+      "en": "Web Developer (Exploring)"
+    },
+    "animated_main_label": "developer",
+    "animated_secondary_initial_label": "software",
+    "animated_secondary_final_label": "fullstack",
+    "image": "/pfp.jpg",
+    "email": "alfinofficial1945@gmail.com",
+    "url": "https://anmol.pro",
+    "summary": {
+      "id": "Pengembang web pemula yang sedang mengeksplorasi dunia frontend dan backend development. Fokus membangun tampilan web yang rapi, responsif, dan mudah digunakan menggunakan HTML, CSS, dan JavaScript. Saat ini aktif memperdalam fundamental JavaScript serta mulai mempelajari Express.js dan GitHub untuk membangun personal branding sebagai web developer.",
+      "en": "Beginner web developer exploring the world of frontend and backend development. Focus on building clean, responsive, and user-friendly web interfaces using HTML, CSS, and JavaScript. Currently actively deepening JavaScript fundamentals and starting to learn Express.js and GitHub to build personal branding as a web developer."
+    },
+    "theme": "platinum",
+    "location": {
+      "address": "Ngaringan",
+      "city": "Jawa Tengah",
+      "countryCode": "ID",
+      "region": "Indonesia"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "icon": "mdi:github",
+        "color": "#929AAB",
+        "username": "AlfinDes",
+        "url": "https://github.com/dashboard"
+      },
+      {
+        "network": "LinkedIn",
+        "icon": "mdi:linkedin",
+        "color": "#0A66C2",
+        "username": "Agung Ahmad Alfin",
+        "url": "https://www.linkedin.com/in/agung-ahmad-alfin/"
+      },
+      {
+        "network": "Email",
+        "icon": "ri:mail-fill",
+        "color": "#D44638",
+        "username": "alfinofficial1945",
+        "url": "mailto:alfinofficial1945@gmail.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "PT Forever Young Internasional",
+      "position": {
+        "id": "Operator Heal Laste",
+        "en": "Heal Laste Operator"
+      },
+      "location_type": "On-site",
+      "location": "Demak, Jawa Tengah, Indonesia",
+      "url": "",
+      "startDate": "2025-02-11",
+      "endDate": null,
+      "summary": {
+        "id": "Bertanggung jawab atas operasional harian dan proses administrasi di lini produksi. Mengelola data dan dokumentasi secara akurat, memastikan kelancaran alur kerja.",
+        "en": "Responsible for daily operations and administrative processes in the production line. Managing data and documentation accurately, ensuring smooth workflow."
+      },
+      "responsibilities": {
+        "id": [
+          "Bertanggung jawab atas operasional harian dan proses administrasi di lini produksi",
+          "Mengelola data dan dokumentasi secara akurat, memastikan kelancaran alur kerja",
+          "Mengembangkan keterampilan manajemen waktu, ketelitian, dan pemecahan masalah"
+        ],
+        "en": [
+          "Responsible for daily operations and administrative processes in the production line",
+          "Managing data and documentation accurately, ensuring smooth workflow",
+          "Developing time management, accuracy, and problem-solving skills"
+        ]
+      },
+      "skills": {
+        "Data Management": "mdi:database",
+        "Documentation": "mdi:file-document",
+        "Time Management": "mdi:clock-outline",
+        "Problem Solving": "mdi:lightbulb-on"
+      }
+    }
+  ],
+  "education": [],
+  "certificates": [],
+  "skills": [
+    {
+      "name": "HTML",
+      "icon": "simple-icons:html5",
+      "level": "⭐⭐⭐⭐⭐",
+      "keywords": [
+        "Web Development",
+        "Semantic HTML"
+      ]
+    },
+    {
+      "name": "CSS",
+      "icon": "ri:css3-fill",
+      "level": "⭐⭐⭐⭐☆",
+      "keywords": [
+        "Web Development",
+        "Styling",
+        "Responsive Design"
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "icon": "simple-icons:javascript",
+      "level": "⭐⭐⭐☆☆",
+      "keywords": [
+        "Web Development",
+        "Programming",
+        "Sedang Dipelajari"
+      ]
+    },
+    {
+      "name": "Fundamental JavaScript",
+      "icon": "simple-icons:javascript",
+      "level": "Sedang Dipelajari",
+      "keywords": [
+        "Learning",
+        "Web Development"
+      ]
+    },
+    {
+      "name": "Express.js",
+      "icon": "simple-icons:express",
+      "level": "Sedang Dipelajari",
+      "keywords": [
+        "Learning",
+        "Backend",
+        "Node.js"
+      ]
+    },
+    {
+      "name": "Git & GitHub",
+      "icon": "mdi:github",
+      "level": "Sedang Dipelajari",
+      "keywords": [
+        "Learning",
+        "Version Control"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Hindi",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Intermediate"
+    }
+  ],
+  "projects": []
+}

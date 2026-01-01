@@ -1,0 +1,62 @@
+{
+    "name": "Agung Ahmad Alfin",
+    "label": "Web Developer (Exploring)",
+    "summary": "Beginner web developer exploring the world of frontend and backend development. Focus on building clean, responsive, and user-friendly web interfaces using HTML, CSS, and JavaScript. Currently actively deepening JavaScript fundamentals and starting to learn Express.js and GitHub to build personal branding as a web developer.",
+    "work": {
+        "pt_forever_young": {
+            "name": "PT Forever Young Internasional",
+            "position": "Heal Laste Operator",
+            "summary": "Responsible for daily operations and administrative processes in the production line. Managing data and documentation accurately, ensuring smooth workflow.",
+            "responsibilities": [
+                "Responsible for daily operations and administrative processes in the production line",
+                "Managing data and documentation accurately, ensuring smooth workflow",
+                "Developing time management, accuracy, and problem-solving skills"
+            ]
+        },
+        "personal_project": {
+            "name": "Personal Project & Self-Learning",
+            "position": "Web Developer",
+            "summary": "Working on simple web projects as a means of learning and building personal branding, with a focus on understanding fundamental web development such as HTML structure, CSS styling, and basic JavaScript logic.",
+            "responsibilities": [
+                "Building simple web projects to practice HTML, CSS, and JavaScript",
+                "Learning JavaScript fundamentals and best practices in web development",
+                "Starting to explore Express.js for backend development",
+                "Using Git & GitHub for version control and project documentation"
+            ]
+        }
+    },
+    "skills": {
+        "keywords": {
+            "web_development": "Web Development",
+            "semantic_html": "Semantic HTML",
+            "frontend": "Frontend",
+            "responsive_design": "Responsive Design",
+            "flexbox": "Flexbox",
+            "grid": "Grid",
+            "fullstack": "Fullstack",
+            "es6": "ES6",
+            "dom_manipulation": "DOM Manipulation"
+        }
+    },
+    "ui": {
+        "nav": {
+            "about": "About",
+            "experience": "Experience",
+            "skills": "Skills",
+            "projects": "Projects",
+            "contact": "Contact"
+        },
+        "buttons": {
+            "download_cv": "Download CV",
+            "view_project": "View Project",
+            "contact_me": "Contact Me"
+        },
+        "sections": {
+            "about_title": "About Me",
+            "experience_title": "Work Experience",
+            "skills_title": "Skills",
+            "projects_title": "Projects",
+            "contact_title": "Contact"
+        }
+    }
+}

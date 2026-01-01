@@ -1,0 +1,62 @@
+{
+    "name": "Agung Ahmad Alfin",
+    "label": "Web Developer (Sedang Eksplor)",
+    "summary": "Pengembang web pemula yang sedang mengeksplorasi dunia frontend dan backend development. Fokus membangun tampilan web yang rapi, responsif, dan mudah digunakan menggunakan HTML, CSS, dan JavaScript. Saat ini aktif memperdalam fundamental JavaScript serta mulai mempelajari Express.js dan GitHub untuk membangun personal branding sebagai web developer.",
+    "work": {
+        "pt_forever_young": {
+            "name": "PT Forever Young Internasional",
+            "position": "Operator Heal Laste",
+            "summary": "Bertanggung jawab atas operasional harian dan proses administrasi di lini produksi. Mengelola data dan dokumentasi secara akurat, memastikan kelancaran alur kerja.",
+            "responsibilities": [
+                "Bertanggung jawab atas operasional harian dan proses administrasi di lini produksi",
+                "Mengelola data dan dokumentasi secara akurat, memastikan kelancaran alur kerja",
+                "Mengembangkan keterampilan manajemen waktu, ketelitian, dan pemecahan masalah"
+            ]
+        },
+        "personal_project": {
+            "name": "Personal Project & Self-Learning",
+            "position": "Web Developer",
+            "summary": "Mengerjakan project web sederhana sebagai sarana belajar dan membangun personal branding, dengan fokus pada pemahaman fundamental web development seperti struktur HTML, styling CSS, dan logika dasar JavaScript.",
+            "responsibilities": [
+                "Membangun project web sederhana untuk mempraktikkan HTML, CSS, dan JavaScript",
+                "Mempelajari fundamental JavaScript dan best practices dalam web development",
+                "Mulai mengeksplorasi Express.js untuk backend development",
+                "Menggunakan Git & GitHub untuk version control dan dokumentasi project"
+            ]
+        }
+    },
+    "skills": {
+        "keywords": {
+            "web_development": "Pengembangan Web",
+            "semantic_html": "HTML Semantik",
+            "frontend": "Frontend",
+            "responsive_design": "Desain Responsif",
+            "flexbox": "Flexbox",
+            "grid": "Grid",
+            "fullstack": "Fullstack",
+            "es6": "ES6",
+            "dom_manipulation": "Manipulasi DOM"
+        }
+    },
+    "ui": {
+        "nav": {
+            "about": "Tentang",
+            "experience": "Pengalaman",
+            "skills": "Keahlian",
+            "projects": "Proyek",
+            "contact": "Kontak"
+        },
+        "buttons": {
+            "download_cv": "Unduh CV",
+            "view_project": "Lihat Proyek",
+            "contact_me": "Hubungi Saya"
+        },
+        "sections": {
+            "about_title": "Tentang Saya",
+            "experience_title": "Pengalaman Kerja",
+            "skills_title": "Keahlian",
+            "projects_title": "Proyek",
+            "contact_title": "Kontak"
+        }
+    }
+}

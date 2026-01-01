@@ -1,0 +1,31 @@
+---
+// Simple client-side script to handle bilingual CV data
+---
+
+<script is:inline>
+  // Helper function to get translated value
+  window.getTranslated = function(value, lang) {
+    if (!lang) {
+      lang = localStorage.getItem('language') || 'id';
+    }
+    
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      return value[lang] || value.id || value.en || '';
+    }
+    
+    return value;
+  };
+
+  // Helper for arrays
+  window.getTranslatedArray = function(value, lang) {
+    if (!lang) {
+      lang = localStorage.getItem('language') || 'id';
+    }
+    
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      return value[lang] || value.id || value.en || [];
+    }
+    
+    return value || [];
+  };
+</script>
