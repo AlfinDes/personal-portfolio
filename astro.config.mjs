@@ -22,11 +22,16 @@ export default defineConfig({
       CSS: false,
       Image: false,
       Action: {
-        Passed: async () => true,  
+        Passed: async () => true,
       },
     })
   ],
   output: 'server',
   adapter: vercel(),
-  
+  vite: {
+    server: {
+      host: true,
+      allowedHosts: ['alfin-dev.com', 'localhost']
+    }
+  }
 });
