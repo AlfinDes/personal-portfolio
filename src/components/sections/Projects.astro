@@ -4,9 +4,13 @@ import Section from "../Section.astro";
 import { Icon } from "astro-icon/components";
 
 import { projects } from "@cv";
+
+// Get language from cookie
+const lang = Astro.cookies.get('language')?.value || 'id';
+const projectsTitle = lang === 'id' ? 'Proyek' : 'Projects';
 ---
 
-<Section className={Astro.props.className} title="Projects">
+<Section className={Astro.props.className} title={projectsTitle}>
   <div class="grid grid-cols-1 gap-3 md:grid-cols-2 print:flex print:flex-col">
     {
       projects && projects.map(

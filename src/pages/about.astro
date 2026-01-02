@@ -1,0 +1,126 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import Projects from "@/components/sections/Projects.astro";
+import Skills from "@/components/sections/Skills.astro";
+import CV from "@cv";
+
+// Get current language from cookie or default to Indonesian
+const lang = Astro.cookies.get('language')?.value || 'id';
+
+// Helper to get translated value
+const t = (value: any) => {
+  if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+    return value[lang] || value.id || value.en || '';
+  }
+  return value;
+};
+
+const summary = t(CV.basics.summary);
+const words = summary.split(' ');
+const { name } = CV.basics;
+
+// Page translations
+const pageTexts = {
+  aboutMe: { id: 'Tentang Saya', en: 'About Me' },
+  summaryTitle: { id: 'Ringkasan', en: 'Summary' },
+  backgroundTitle: { id: 'Latar Belakang', en: 'Background' },
+  currentFocusTitle: { id: 'Fokus Saat Ini', en: 'Current Focus' }
+};
+
+const pt = (key: keyof typeof pageTexts) => pageTexts[key][lang as 'id' | 'en'];
+---
+
+<Layout title={`${pt('aboutMe')} ${name} | Portfolio`}>
+  <main class="relative max-w-4xl mx-auto px-8 py-24 min-h-screen">
+    <div class="space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-skin-base">
+          {pt('aboutMe')}
+        </h1>
+        <div class="h-1 w-20 bg-skin-hue rounded-full"></div>
+      </div>
+
+      <Section title={pt('summaryTitle')} className="mt-8">
+        <p class="font-mono opacity-75 print:font-sans text-skin-hue font-semibold print:text-skin-base print:font-normal w-full select-none">
+          {words.map((word: string) => (
+            <span class="w-min sm:hover:bg-skin-button-muted transition-all duration-200 sm:hover:cursor-none">{word}</span> <span> </span>
+          ))}
+        </p>
+      </Section>
+
+      <Section title={pt('backgroundTitle')} className="mt-8">
+        <div class="space-y-4 text-skin-muted">
+          <p>
+            {t({
+              id: "Saya adalah seorang pengembang web yang sedang dalam perjalanan belajar dan eksplorasi. Fokus saya saat ini adalah membangun fondasi yang kuat dalam pengembangan web, baik frontend maupun backend.",
+              en: "I am a web developer on a learning and exploration journey. My current focus is building a strong foundation in web development, both frontend and backend."
+            })}
+          </p>
+          <p>
+            {t({
+              id: "Saya percaya bahwa setiap baris kode adalah kesempatan untuk belajar sesuatu yang baru. Dengan dedikasi dan konsistensi, saya terus mengasah keterampilan saya dalam HTML, CSS, JavaScript, dan teknologi web modern lainnya.",
+              en: "I believe that every line of code is an opportunity to learn something new. With dedication and consistency, I continue to hone my skills in HTML, CSS, JavaScript, and other modern web technologies."
+            })}
+          </p>
+        </div>
+      </Section>
+
+      <Section title={pt('currentFocusTitle')} className="mt-8">
+        <ul class="space-y-3 text-skin-muted">
+          <li class="flex items-start gap-3">
+            <span class="text-skin-hue mt-1">▸</span>
+            <span>{t({
+              id: "Memperdalam fundamental JavaScript dan konsep pemrograman",
+              en: "Deepening JavaScript fundamentals and programming concepts"
+            })}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-skin-hue mt-1">▸</span>
+            <span>{t({
+              id: "Mempelajari Express.js untuk pengembangan backend",
+              en: "Learning Express.js for backend development"
+            })}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-skin-hue mt-1">▸</span>
+            <span>{t({
+              id: "Menguasai Git & GitHub untuk version control dan kolaborasi",
+              en: "Mastering Git & GitHub for version control and collaboration"
+            })}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-skin-hue mt-1">▸</span>
+            <span>{t({
+              id: "Membangun personal branding sebagai web developer",
+              en: "Building personal branding as a web developer"
+            })}</span>
+          </li>
+        </ul>
+      </Section>
+
+      <!-- Skills Section -->
+      <Skills className="mt-8" />
+
+      <!-- Projects Section -->
+      <Projects className="mt-8" />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

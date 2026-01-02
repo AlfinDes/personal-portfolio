@@ -1,12 +1,13 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import About from "@/components/sections/About.astro";
 import Experience from "@/components/sections/Experience.astro";
 import Hero from "@/components/sections/Hero.astro";
-import Projects from "@/components/sections/Projects.astro";
-import Skills from "@/components/sections/Skills.astro";
+import LatestPosts from "@/components/sections/LatestPosts.astro";
 import KeyboardManager from "@/components/KeyboardManager.astro";
+
+// Get current language
+const lang = Astro.cookies.get('language')?.value || 'id';
 ---
 
 <Layout title="Anmol Singh | Full Stack Developer | anmol.pro">
@@ -16,21 +17,13 @@ import KeyboardManager from "@/components/KeyboardManager.astro";
     <div
       class="slide-enter space-y-6 ease-in md:col-span-2 print:grid print:grid-cols-5 print:space-y-0 md:sticky top-0 self-start h-min"
     >
-      <Hero className="col-span-2" />
-      <About className="col-span-3" />
+      <Hero className="col-span-full" />
     </div>
     <div
       class="slide-enter-content space-y-12 md:col-span-4 print:grid print:grid-cols-5 print:grid-flow-row print:gap-2 print:space-y-0"
     >
       <Experience className="print:col-span-3" />
-      {
-        (
-          <>
-            <Projects className="print:hidden" />
-            <Skills className="print:col-span-full" />
-          </>
-        )
-      }
+      <LatestPosts lang={lang as 'id' | 'en'} />
     </div>
   </main>
   <KeyboardManager />

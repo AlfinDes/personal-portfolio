@@ -9,7 +9,7 @@
     "animated_main_label": "developer",
     "animated_secondary_initial_label": "software",
     "animated_secondary_final_label": "fullstack",
-    "image": "/pfp.jpg",
+    "image": "/logo.png",
     "email": "alfinofficial1945@gmail.com",
     "url": "https://anmol.pro",
     "summary": {
@@ -161,5 +161,30 @@
       "fluency": "Intermediate"
     }
   ],
-  "projects": []
+  "projects": [],
+  "posts": [
+    {
+      "slug": "web-development-journey",
+      "title": {
+        "id": "Perjalanan Mempelajari Web Development: Dari HTML, CSS hingga Express.js",
+        "en": "Learning Web Development Journey: From HTML, CSS to Express.js"
+      },
+      "date": "2026-01-03",
+      "excerpt": {
+        "id": "Belajar web development mengajarkan saya bahwa membangun sebuah website bukan hanya soal tampilan, tetapi juga tentang bagaimana logika dan alur data bekerja di balik layar.",
+        "en": "Learning web development taught me that building a website is not just about appearance, but also about how logic and data flow work behind the scenes."
+      },
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Express.js",
+        "Web Development"
+      ],
+      "content": {
+        "id": "Belajar web development mengajarkan saya bahwa membangun sebuah website bukan hanya soal tampilan, tetapi juga tentang bagaimana logika dan alur data bekerja di balik layar. Perjalanan saya dimulai dari HTML dan CSS, lalu berkembang ke JavaScript dan fundamental backend menggunakan Express.js.\n\nDalam artikel ini, saya membagikan pengalaman dan pemahaman yang saya dapatkan selama proses belajar tersebut.\n\n## Fondasi Website dengan HTML dan CSS\n\nHTML dan CSS menjadi dasar utama dalam setiap project yang saya kerjakan. Saya mempelajari bagaimana menyusun struktur halaman yang rapi menggunakan semantic HTML serta mengatur tampilan agar konsisten dan responsif menggunakan CSS.\n\nBeberapa hal yang saya fokuskan:\n\n- Struktur layout yang jelas dan mudah dipahami\n- Responsive design untuk berbagai ukuran layar\n- Penulisan CSS yang terorganisir dan mudah di-maintain\n\nPendekatan ini membantu saya membangun tampilan website yang bersih dan profesional.\n\n## Membuat Website Lebih Hidup dengan JavaScript\n\nSetelah memahami tampilan, saya mulai menambahkan interaktivitas menggunakan JavaScript. Di tahap ini, saya belajar bagaimana website dapat merespons aksi pengguna secara real-time.\n\nContoh implementasi yang saya pelajari:\n\n- Manipulasi DOM untuk mengubah konten secara dinamis\n- Event handling seperti klik dan submit\n- Validasi form sederhana\n- Logika dasar untuk meningkatkan pengalaman pengguna\n\nJavaScript membuat website yang saya bangun terasa lebih hidup dan fungsional.\n\n## Mengenal Backend melalui Fundamental Express.js\n\nUntuk memahami bagaimana frontend terhubung dengan server, saya mulai mempelajari fundamental Express.js. Di tahap ini, saya belajar:\n\n- Membuat server sederhana dengan Node.js\n- Routing dasar menggunakan Express\n- Cara menangani request dan response\n- Konsep REST API sederhana\n\nWalaupun masih di tahap fundamental, Express.js membantu saya memahami gambaran besar alur kerja aplikasi web secara menyeluruh.\n\n## Penutup\n\nBelajar HTML, CSS, JavaScript, dan Express.js adalah proses bertahap yang saling melengkapi. Setiap teknologi memiliki peran penting dalam membangun aplikasi web yang utuh.\n\nMelalui artikel ini, saya ingin mendokumentasikan perjalanan belajar saya sekaligus menunjukkan komitmen untuk terus berkembang sebagai web developer.",
+        "en": "Learning web development taught me that building a website is not just about appearance, but also about how logic and data flow work behind the scenes. My journey started with HTML and CSS, then evolved to JavaScript and backend fundamentals using Express.js.\n\nIn this article, I share the experiences and understanding I gained during this learning process.\n\n## Website Foundation with HTML and CSS\n\nHTML and CSS became the main foundation in every project I worked on. I learned how to structure pages neatly using semantic HTML and arrange displays to be consistent and responsive using CSS.\n\nSome things I focused on:\n\n- Clear and easy-to-understand layout structure\n- Responsive design for various screen sizes\n- Organized and maintainable CSS writing\n\nThis approach helped me build clean and professional website displays.\n\n## Making Websites More Alive with JavaScript\n\nAfter understanding the display, I started adding interactivity using JavaScript. At this stage, I learned how websites can respond to user actions in real-time.\n\nImplementation examples I learned:\n\n- DOM manipulation to change content dynamically\n- Event handling such as clicks and submits\n- Simple form validation\n- Basic logic to improve user experience\n\nJavaScript made the websites I built feel more alive and functional.\n\n## Getting to Know Backend through Express.js Fundamentals\n\nTo understand how the frontend connects to the server, I started learning Express.js fundamentals. At this stage, I learned:\n\n- Creating a simple server with Node.js\n- Basic routing using Express\n- How to handle requests and responses\n- Simple REST API concepts\n\nAlthough still at the fundamental stage, Express.js helped me understand the big picture of web application workflow comprehensively.\n\n## Conclusion\n\nLearning HTML, CSS, JavaScript, and Express.js is a gradual process that complements each other. Each technology has an important role in building a complete web application.\n\nThrough this article, I want to document my learning journey while showing my commitment to continue growing as a web developer."
+      }
+    }
+  ]
 }

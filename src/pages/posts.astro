@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCard from '../components/PostCard.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import cv from '../../cv.json';
+
+// Get current language from cookie or default to Indonesian
+const lang = Astro.cookies.get('language')?.value || 'id';
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default;
+
+// Get posts from content collection, filtered by language
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.lang === lang;
+});
+
+// Sort posts by date (newest first)
+const posts = allPosts.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+// Get translations for UI elements
+const postsTitle = t.ui.sections.posts_title;
+const postsDescription = t.ui.sections.posts_description;
+const readMoreText = t.ui.buttons.read_more;
+---
+
+<Layout 
+  title={`${postsTitle} - ${cv.basics.name}`}
+  description={postsDescription}
+>
+  <main class="min-h-screen pt-24 pb-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      {/* Header */}
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-skin-hue/10 text-skin-hue rounded-full mb-4">
+          <Icon name="ri:article-line" class="w-5 h-5" />
+          <span class="text-sm font-medium">{postsTitle}</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-skin-base mb-4">
+          {postsTitle}
+        </h1>
+        <p class="text-lg text-skin-muted max-w-2xl mx-auto">
+          {postsDescription}
+        </p>
+      </div>
+
+      {/* Posts Grid */}
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => {
+            // Extract slug from file name (remove language suffix)
+            const slug = post.id.replace(/\.(id|en)\.mdx$/, '');
+            
+            return (
+              <PostCard
+                slug={slug}
+                title={post.data.title[lang as 'id' | 'en']}
+                excerpt={post.data.excerpt[lang as 'id' | 'en']}
+                date={post.data.date}
+                tags={post.data.tags}
+                readMoreText={readMoreText}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <Icon name="ri:file-list-3-line" class="w-16 h-16 mx-auto mb-4 text-skin-muted/50" />
+          <p class="text-skin-muted text-lg">
+            {lang === 'id' ? 'Belum ada postingan' : 'No posts yet'}
+          </p>
+        </div>
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--color-fill) 100%
+    );
+  }
+</style>

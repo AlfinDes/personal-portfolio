@@ -1,0 +1,50 @@
+---
+import CV from "@cv";
+import { Icon } from 'astro-icon/components';
+
+// Get current language from cookie
+const lang = Astro.cookies.get('language')?.value || 'id';
+
+const { name, image, profiles } = CV.basics;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative mt-16 border-t border-skin-muted/10 bg-skin-fill/80 backdrop-blur-md print:hidden">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Left: Logo & Copyright -->
+      <div class="flex items-center gap-3">
+        <img 
+          src={image} 
+          alt={name}
+          class="w-10 h-10 rounded-full ring-2 ring-skin-hue/20"
+        />
+        <span class="text-sm text-skin-muted">
+          © {currentYear} Alfin
+        </span>
+      </div>
+
+      <!-- Right: Social Icons -->
+      <div class="flex items-center gap-3">
+        {profiles.map(({ network, url, icon }) => (
+          <a 
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-skin-muted hover:text-skin-hue transition-colors"
+            aria-label={network}
+            data-ccursor
+          >
+            <Icon name={icon} class="w-5 h-5" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    backdrop-filter: blur(8px);
+  }
+</style>

@@ -1,0 +1,87 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  tags: string[];
+  readMoreText: string;
+}
+
+const { slug, title, excerpt, date, tags, readMoreText } = Astro.props;
+
+// Format date
+const formattedDate = new Date(date).toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="post-card group">
+  <a href={`/posts/${slug}`} class="block h-full">
+    <div class="h-full bg-skin-card border border-skin-muted/20 rounded-xl p-6 transition-all duration-300 hover:border-skin-hue hover:shadow-lg hover:shadow-skin-hue/10 hover:-translate-y-1">
+      {/* Date and Tags */}
+      <div class="flex items-center gap-3 mb-4 text-sm text-skin-muted">
+        <div class="flex items-center gap-2">
+          <Icon name="ri:calendar-line" class="w-4 h-4" />
+          <time datetime={date}>{formattedDate}</time>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3 class="text-xl font-bold text-skin-base mb-3 group-hover:text-skin-hue transition-colors line-clamp-2">
+        {title}
+      </h3>
+
+      {/* Excerpt */}
+      <p class="text-skin-muted mb-4 line-clamp-3">
+        {excerpt}
+      </p>
+
+      {/* Tags */}
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tags.slice(0, 3).map((tag) => (
+            <span class="px-3 py-1 text-xs font-medium bg-skin-hue/10 text-skin-hue rounded-full">
+              {tag}
+            </span>
+          ))}
+          {tags.length > 3 && (
+            <span class="px-3 py-1 text-xs font-medium bg-skin-muted/10 text-skin-muted rounded-full">
+              +{tags.length - 3}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Read More */}
+      <div class="flex items-center gap-2 text-skin-hue font-medium text-sm group-hover:gap-3 transition-all">
+        <span>{readMoreText}</span>
+        <Icon name="ri:arrow-right-line" class="w-4 h-4" />
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .post-card {
+    @apply h-full;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

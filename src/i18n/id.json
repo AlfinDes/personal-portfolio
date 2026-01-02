@@ -44,11 +44,14 @@
             "experience": "Pengalaman",
             "skills": "Keahlian",
             "projects": "Proyek",
+            "posts": "Postingan",
             "contact": "Kontak"
         },
         "buttons": {
             "download_cv": "Unduh CV",
             "view_project": "Lihat Proyek",
+            "read_more": "Baca Selengkapnya",
+            "back_to_posts": "Kembali ke Postingan",
             "contact_me": "Hubungi Saya"
         },
         "sections": {
@@ -56,6 +59,9 @@
             "experience_title": "Pengalaman Kerja",
             "skills_title": "Keahlian",
             "projects_title": "Proyek",
+            "posts_title": "Artikel & Postingan",
+            "posts_description": "Dokumentasi perjalanan belajar dan pengalaman saya dalam web development",
+            "published_on": "Dipublikasikan pada",
             "contact_title": "Kontak"
         }
     }

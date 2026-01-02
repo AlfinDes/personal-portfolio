@@ -44,11 +44,14 @@
             "experience": "Experience",
             "skills": "Skills",
             "projects": "Projects",
+            "posts": "Posts",
             "contact": "Contact"
         },
         "buttons": {
             "download_cv": "Download CV",
             "view_project": "View Project",
+            "read_more": "Read More",
+            "back_to_posts": "Back to Posts",
             "contact_me": "Contact Me"
         },
         "sections": {
@@ -56,6 +59,9 @@
             "experience_title": "Work Experience",
             "skills_title": "Skills",
             "projects_title": "Projects",
+            "posts_title": "Articles & Posts",
+            "posts_description": "Documentation of my learning journey and experiences in web development",
+            "published_on": "Published on",
             "contact_title": "Contact"
         }
     }

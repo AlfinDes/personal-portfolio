@@ -1,0 +1,287 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCurrentLanguage } from '../i18n';
+
+// Get current language from cookie or default to Indonesian
+const lang = Astro.cookies.get('language')?.value || 'id';
+
+// Navigation translations
+const navTexts = {
+  home: { id: 'Beranda', en: 'Home' },
+  articles: { id: 'Artikel', en: 'Articles' },
+  about: { id: 'Tentang', en: 'About' },
+  dayMode: { id: 'Mode Siang', en: 'Day mode' },
+  nightMode: { id: 'Mode Malam', en: 'Night mode' }
+};
+
+const t = (key: keyof typeof navTexts) => navTexts[key][lang as 'id' | 'en'];
+
+// Language options
+const languages = [
+  { code: 'id', label: 'ID', fullLabel: 'Indonesia', flag: '🇮🇩' },
+  { code: 'en', label: 'English', fullLabel: 'English', flag: '🇺🇸' }
+];
+
+const currentLanguage = languages.find(l => l.code === lang) || languages[0];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-skin-fill/80 backdrop-blur-md border-b border-skin-muted/10 print:hidden">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Left: Navigation Links -->
+      <div class="flex items-center gap-6">
+        <a 
+          href="/" 
+          class="nav-link text-sm font-medium text-skin-base hover:text-skin-hue transition-colors"
+          data-ccursor
+        >
+          {t('home')}
+        </a>
+        <a 
+          href="/posts" 
+          class="nav-link text-sm font-medium text-skin-base hover:text-skin-hue transition-colors"
+          data-ccursor
+        >
+          {t('articles')}
+        </a>
+        <a 
+          href="/about" 
+          class="nav-link text-sm font-medium text-skin-base hover:text-skin-hue transition-colors"
+          data-ccursor
+        >
+          {t('about')}
+        </a>
+      </div>
+
+      <!-- Right: Language Switcher & Theme Toggle -->
+      <div class="flex items-center gap-4">
+        <!-- Language Switcher Dropdown -->
+        <div class="relative language-dropdown">
+          <button
+            id="nav-language-toggle"
+            class="flex items-center gap-2 text-sm font-medium text-skin-base hover:text-skin-hue transition-colors"
+            aria-label="Toggle language"
+            data-ccursor
+          >
+            <span class="text-lg">{currentLanguage.flag}</span>
+            <span id="nav-lang-text">{currentLanguage.label}</span>
+            <Icon name="ri:arrow-down-s-line" class="w-4 h-4 transition-transform" id="lang-arrow" />
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div 
+            id="language-menu"
+            class="absolute right-0 mt-2 w-40 bg-skin-fill border border-skin-muted/20 rounded-lg shadow-lg opacity-0 invisible transition-all duration-200 overflow-hidden"
+          >
+            {languages.map((language) => (
+              <button
+                class="language-option w-full px-4 py-2 text-left text-sm text-skin-base hover:bg-skin-hue/10 hover:text-skin-hue transition-colors flex items-center gap-2"
+                data-lang={language.code}
+              >
+                <span class="text-base">{language.flag}</span>
+                <span>{language.fullLabel}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button
+          id="nav-theme-toggle"
+          class="flex items-center gap-2 text-sm font-medium text-skin-base hover:text-skin-hue transition-colors"
+          aria-label="Toggle theme"
+          data-ccursor
+        >
+          <Icon name="ri:sun-fill" class="w-5 h-5 dark:hidden" />
+          <Icon name="ri:moon-fill" class="w-5 h-5 hidden dark:block" />
+          <span class="hidden sm:inline">
+            <span class="dark:hidden">{t('dayMode')}</span>
+            <span class="hidden dark:inline">{t('nightMode')}</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer to prevent content from going under fixed nav -->
+<div class="h-16 print:hidden"></div>
+
+<script>
+  import { getCurrentLanguage, setLanguage, type Language } from '../i18n';
+
+  // Language Dropdown
+  const langButton = document.getElementById('nav-language-toggle');
+  const langMenu = document.getElementById('language-menu');
+  const langArrow = document.getElementById('lang-arrow');
+  const langText = document.getElementById('nav-lang-text');
+  const languageOptions = document.querySelectorAll('.language-option');
+
+  let currentLang = getCurrentLanguage();
+  let isDropdownOpen = false;
+
+  // Toggle dropdown
+  langButton?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isDropdownOpen = !isDropdownOpen;
+    
+    if (langMenu && langArrow) {
+      if (isDropdownOpen) {
+        langMenu.classList.remove('opacity-0', 'invisible');
+        langMenu.classList.add('opacity-100', 'visible');
+        langArrow.style.transform = 'rotate(180deg)';
+      } else {
+        langMenu.classList.add('opacity-0', 'invisible');
+        langMenu.classList.remove('opacity-100', 'visible');
+        langArrow.style.transform = 'rotate(0deg)';
+      }
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (isDropdownOpen && langMenu && !langButton?.contains(e.target as Node)) {
+      langMenu.classList.add('opacity-0', 'invisible');
+      langMenu.classList.remove('opacity-100', 'visible');
+      if (langArrow) {
+        langArrow.style.transform = 'rotate(0deg)';
+      }
+      isDropdownOpen = false;
+    }
+  });
+
+  // Handle language selection
+  languageOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const newLang = target.getAttribute('data-lang') as Language;
+      
+      if (newLang && newLang !== currentLang) {
+        setLanguage(newLang);
+        document.cookie = `language=${newLang}; path=/; max-age=31536000`;
+        window.location.reload();
+      }
+    });
+  });
+
+  // Theme Toggle
+  let isDark = document.documentElement.classList.contains('dark');
+
+  function toggleTheme(event: MouseEvent) {
+    const isAppearanceTransition =
+      'startViewTransition' in document &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!isAppearanceTransition) {
+      isDark = !isDark;
+      updateTheme();
+      return;
+    }
+
+    const x = event.clientX;
+    const y = event.clientY;
+    const endRadius = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y)
+    );
+
+    // @ts-ignore
+    const transition = document.startViewTransition(async () => {
+      isDark = !isDark;
+      updateTheme();
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ];
+      document.documentElement.animate(
+        {
+          clipPath: isDark ? [...clipPath].reverse() : clipPath,
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+          pseudoElement: isDark
+            ? '::view-transition-old(root)'
+            : '::view-transition-new(root)',
+        }
+      );
+    });
+  }
+
+  function updateTheme() {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  const themeButton = document.getElementById('nav-theme-toggle');
+  if (themeButton) {
+    themeButton.addEventListener('click', toggleTheme);
+  }
+
+  // Initialize theme
+  if (
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    isDark = true;
+    updateTheme();
+  }
+
+  // Listen for system color scheme changes
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', e => {
+      if (!('theme' in localStorage)) {
+        isDark = e.matches;
+        updateTheme();
+      }
+    });
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-hue);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .language-dropdown {
+    position: relative;
+  }
+
+  #language-menu {
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .language-option {
+    cursor: pointer;
+  }
+
+  .language-option:first-child {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .language-option:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+</style>

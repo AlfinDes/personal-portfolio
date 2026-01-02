@@ -2,9 +2,13 @@
 import Section from '../Section.astro'
 import { skills } from '@cv'
 import { Icon } from 'astro-icon/components'
+
+// Get language from cookie
+const lang = Astro.cookies.get('language')?.value || 'id';
+const skillsTitle = lang === 'id' ? 'Keterampilan' : 'Skills';
 ---
 
-<Section className={Astro.props.className} title='Skills'>
+<Section className={Astro.props.className} title={skillsTitle}>
   <ul
     class='w-100 inline-flex print:mt-4 flex-wrap gap-4 [&>li>svg]:text-skin-hue [&>li]:text-sm'>
     {

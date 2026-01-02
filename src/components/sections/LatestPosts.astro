@@ -1,0 +1,144 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+// Get latest posts (max 3)
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.lang === lang;
+});
+
+// Sort by date (newest first) and take only 3
+const latestPosts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+// Translations
+const translations = {
+  title: {
+    id: 'Artikel Terbaru',
+    en: 'Latest Articles'
+  },
+  viewAll: {
+    id: 'Lihat Semua Artikel',
+    en: 'View All Articles'
+  },
+  readMore: {
+    id: 'Baca Selengkapnya',
+    en: 'Read More'
+  },
+  publishedOn: {
+    id: 'Dipublikasikan',
+    en: 'Published'
+  }
+};
+
+const t = (key: keyof typeof translations) => translations[key][lang];
+---
+
+<section class="section-container">
+  <div class="section-header">
+    <div class="flex items-center gap-3 mb-2">
+      <Icon name="ri:article-line" class="w-6 h-6 text-skin-hue" />
+      <h2 class="section-title">{t('title')}</h2>
+    </div>
+  </div>
+
+  {latestPosts.length > 0 ? (
+    <div class="space-y-6">
+      {/* Posts Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {latestPosts.map((post) => {
+          const slug = post.id.replace(/\.(id|en)\.mdx$/, '');
+          const formattedDate = new Date(post.data.date).toLocaleDateString(
+            lang === 'id' ? 'id-ID' : 'en-US',
+            { year: 'numeric', month: 'short', day: 'numeric' }
+          );
+
+          return (
+            <article class="group bg-skin-card border border-skin-muted/20 rounded-xl p-6 transition-all duration-300 hover:border-skin-hue hover:shadow-lg hover:shadow-skin-hue/10 hover:-translate-y-1">
+              <a href={`/posts/${slug}`} class="block">
+                {/* Date */}
+                <div class="flex items-center gap-2 text-xs text-skin-muted mb-3">
+                  <Icon name="ri:calendar-line" class="w-3.5 h-3.5" />
+                  <time datetime={post.data.date}>{formattedDate}</time>
+                </div>
+
+                {/* Title */}
+                <h3 class="text-lg font-bold text-skin-base mb-3 group-hover:text-skin-hue transition-colors line-clamp-2">
+                  {post.data.title[lang]}
+                </h3>
+
+                {/* Excerpt */}
+                <p class="text-sm text-skin-muted mb-4 line-clamp-3">
+                  {post.data.excerpt[lang]}
+                </p>
+
+                {/* Tags */}
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {post.data.tags.slice(0, 2).map((tag) => (
+                      <span class="px-2 py-1 text-xs font-medium bg-skin-hue/10 text-skin-hue rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                    {post.data.tags.length > 2 && (
+                      <span class="px-2 py-1 text-xs font-medium bg-skin-muted/10 text-skin-muted rounded-full">
+                        +{post.data.tags.length - 2}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Read More */}
+                <div class="flex items-center gap-2 text-skin-hue text-sm font-medium group-hover:gap-3 transition-all">
+                  <span>{t('readMore')}</span>
+                  <Icon name="ri:arrow-right-line" class="w-4 h-4" />
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+
+      {/* View All Button */}
+      <div class="flex justify-center mt-8">
+        <a
+          href="/posts"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-skin-hue text-white rounded-lg hover:bg-skin-hue/90 transition-all hover:shadow-lg hover:shadow-skin-hue/20 font-medium"
+        >
+          <span>{t('viewAll')}</span>
+          <Icon name="ri:arrow-right-line" class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  ) : (
+    <div class="text-center py-12">
+      <Icon name="ri:file-list-3-line" class="w-12 h-12 mx-auto mb-3 text-skin-muted/50" />
+      <p class="text-skin-muted">
+        {lang === 'id' ? 'Belum ada artikel' : 'No articles yet'}
+      </p>
+    </div>
+  )}
+</section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
